@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
@@ -7,6 +10,9 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
 }
+
+val keystorePropertiesFile = file("keystore.properties")
+val isKeystorePropertiesFileExists = keystorePropertiesFile.exists()
 
 android {
     namespace = "com.github.mikan.githubstarviewer"
@@ -25,13 +31,32 @@ android {
         }
     }
 
+    signingConfigs {
+        if (isKeystorePropertiesFileExists) {
+            val keystoreProperties = Properties().apply {
+                load(FileInputStream(keystorePropertiesFile))
+            }
+            create("release") {
+                storeFile = keystoreProperties["storeFile"]?.let { file(it) }
+                storePassword = keystoreProperties["storePassword"] as String?
+                keyAlias = keystoreProperties["keyAlias"] as String?
+                keyPassword = keystoreProperties["keyPassword"] as String?
+            }
+        }
+    }
+
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = if (isKeystorePropertiesFileExists) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
+            }
         }
     }
     compileOptions {
