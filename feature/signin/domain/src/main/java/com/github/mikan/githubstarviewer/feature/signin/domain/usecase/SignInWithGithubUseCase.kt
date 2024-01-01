@@ -23,5 +23,4 @@ class SignInWithGithubUseCase @Inject constructor(
             }
             it
         }
-
 }
