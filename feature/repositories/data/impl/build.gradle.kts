@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinSerialization)
+
+    alias(libs.plugins.githubStarViewer.detekt)
 }
 
 android {

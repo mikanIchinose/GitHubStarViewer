@@ -42,18 +42,20 @@ class NetworkModule {
 //        okhttpLogger: HttpLoggingInterceptor,
         ktorLogger: Logger,
     ): HttpClient = HttpClient(OkHttp) {
-        //engine {
+        // engine {
         //    addInterceptor(logging)
-        //}
+        // }
         install(Logging) {
             logger = ktorLogger
             level = LogLevel.BODY
         }
         install(ContentNegotiation) {
-            json(Json {
-                ignoreUnknownKeys = true
-                prettyPrint = true
-            })
+            json(
+                Json {
+                    ignoreUnknownKeys = true
+                    prettyPrint = true
+                }
+            )
         }
         install(DefaultRequest) {
             url("https://api.github.com/")
