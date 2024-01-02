@@ -64,7 +64,7 @@ class NetworkModule {
                 append("X-GitHub-Api-Version", "2022-11-28")
                 append(
                     "Authorization",
-                    "Bearer ${BuildConfig.GITHUB_API_TOKEN}"
+                    "Bearer ${BuildConfig.API_TOKEN}"
                 )
             }
         }
