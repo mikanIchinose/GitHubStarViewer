@@ -24,6 +24,7 @@ serialization = "1.6.0"
 collectionsImmutable = "0.3.4"
 secret = "2.0.1"
 detekt = "1.23.3"
+githook = "1.2.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -88,5 +89,6 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 secret = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secret" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+githook = { id = "com.star-zero.gradle.githook", version.ref = "githook" }
 
 githubStarViewer-detekt = { id = "githubstarviewer.detekt", version = "unspecified" }
