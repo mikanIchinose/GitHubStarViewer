@@ -36,7 +36,7 @@ jobs:
           echo "autoCorrect=false" >> config/detekt/detekt.properties
 
       - id: detekt
-        run: ./gradlew detekt --stacktrace
+        run: ./gradlew detekt --continue
 
       - name: Run report with ReviewDog
         if: steps.detekt.outcome == 'failure'
