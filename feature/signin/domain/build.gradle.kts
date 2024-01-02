@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.ksp)
 
@@ -32,5 +32,5 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
-    testImplementation(libs.junit)
+    // testImplementation(libs.junit)
 }
