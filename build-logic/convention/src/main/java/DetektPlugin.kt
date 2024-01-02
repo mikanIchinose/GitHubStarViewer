@@ -11,10 +11,13 @@ import org.gradle.kotlin.dsl.getByType
 class DetektPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
+            // apply plugin
             pluginManager.apply(libs.plugin("detekt").pluginId)
 
+            // setup
             setupDetekt(extensions.getByType<DetektExtension>())
 
+            // add detekt dependencies
             dependencies {
                 "detektPlugins"(libs.library("detekt-formatting"))
             }

@@ -6,10 +6,22 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
+import java.util.Properties
 
 internal fun Project.setupDetekt(extension: DetektExtension) {
+    val properties = Properties().apply {
+        rootProject
+            .file("config/detekt/detekt.properties")
+            .inputStream()
+            .let {
+                load(it)
+                it.close()
+            }
+    }
     extension.apply {
-        autoCorrect = true
+        properties.getProperty("autoCorrect")?.let {
+            autoCorrect = it.toBoolean()
+        }
         parallel = true
     }
     mergeDetektReports()
@@ -21,6 +33,7 @@ private fun Project.mergeDetektReports() {
             output.set(rootProject.layout.buildDirectory.file("reports/detekt/merge.xml"))
         }
     } else {
+        @Suppress("UNCHECKED_CAST")
         rootProject.tasks.named("reportMerge") as TaskProvider<ReportMergeTask>
     }
 
@@ -34,7 +47,6 @@ private fun Project.mergeDetektReports() {
             include("**/*.kts")
             exclude("**/resources/**")
             exclude("**/build/**")
-
 
             reportMergeTaskProvider.configure {
                 input.from(this@detekt.xmlReportFile) // or .sarifReportFile

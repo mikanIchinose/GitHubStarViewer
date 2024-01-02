@@ -14,6 +14,7 @@
 .cxx
 local.properties
 keystore.properties
+detekt.properties
 
 # firebase
 google-services.json
