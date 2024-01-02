@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Column {
-                        SignInScreen(activity = this@MainActivity)
+                                                   SignInScreen(activity = this@MainActivity)
                         RepositoriesScreen()
                     }
                 }
