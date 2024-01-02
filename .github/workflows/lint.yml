@@ -10,7 +10,6 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
       pull-requests: write
     steps:
       - uses: actions/checkout@v4
@@ -40,7 +39,7 @@ jobs:
           echo "autoCorrect=false" >> config/detekt/detekt.properties
 
       - id: detekt
-        run: ./gradlew detekt reportMerge --continue
+        run: ./gradlew detekt --continue
 
       - name: Run report with ReviewDog
         if: ${{ failure() }}
