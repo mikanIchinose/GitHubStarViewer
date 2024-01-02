@@ -33,6 +33,7 @@ private fun Project.mergeDetektReports() {
             output.set(rootProject.layout.buildDirectory.file("reports/detekt/merge.xml"))
         }
     } else {
+        @Suppress("UNCHECKED_CAST")
         rootProject.tasks.named("reportMerge") as TaskProvider<ReportMergeTask>
     }
 
@@ -46,7 +47,6 @@ private fun Project.mergeDetektReports() {
             include("**/*.kts")
             exclude("**/resources/**")
             exclude("**/build/**")
-
 
             reportMergeTaskProvider.configure {
                 input.from(this@detekt.xmlReportFile) // or .sarifReportFile
