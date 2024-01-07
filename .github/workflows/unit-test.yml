@@ -1,0 +1,35 @@
+name: Unit Test
+run-name: Unit Test
+
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+
+jobs:
+  unit-test:
+    environment: build
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/setup-java
+      - uses: ./.github/actions/setup-properties
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: ./.github/actions/setup-secrets
+        with:
+          google-services-json: ${{ secrets.GOOGLE_SERVICES_JSON }}
+
+      - name: run unit test
+        run: ./gradlew testDebugUnitTest
+        continue-on-error: true
+
+      - name: publish unit test result
+        if: always()
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: "**/build/test-results/**/*.xml"
