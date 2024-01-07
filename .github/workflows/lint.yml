@@ -21,6 +21,11 @@ jobs:
 
       - uses: ./.github/actions/setup-java
       - uses: ./.github/actions/setup-properties
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: ./.github/actions/setup-secrets
+        with:
+          google-services-json: ${{ secrets.GOOGLE_SERVICES_JSON }}
 
       - name: run detekt
         run: ./gradlew detekt --continue

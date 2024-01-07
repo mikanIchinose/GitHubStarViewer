@@ -1,11 +1,16 @@
 name: Setup secrets
 description: Set up secrets for build
 
+inputs:
+  google-services-json:
+    description: 'google-services.json base64 encoded string'
+    required: true
+
 runs:
   using: "composite"
   steps:
     - name: setup google-services.json
       shell: bash
       env:
-        GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        GOOGLE_SERVICES_JSON: ${{ inputs.google-services-json }}
       run: echo $GOOGLE_SERVICES_JSON | base64 --decode > app/google-services.json
