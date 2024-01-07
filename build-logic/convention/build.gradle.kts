@@ -20,14 +20,7 @@ tasks.withType<KotlinCompile>().configureEach {
 }
 
 dependencies {
-//    compileOnly(libs.android.gradlePlugin)
-//    compileOnly(libs.android.tools.common)
-//    compileOnly(libs.firebase.crashlytics.gradlePlugin)
-//    compileOnly(libs.firebase.performance.gradlePlugin)
-//    compileOnly(libs.kotlin.gradlePlugin)
-//    compileOnly(libs.ksp.gradlePlugin)
-//    compileOnly(libs.room.gradlePlugin)
-//    implementation(libs.truth)
+    compileOnly(libs.android.gradle.plugin)
     implementation(libs.detekt.gradle.plugin)
 }
 
@@ -43,6 +36,11 @@ gradlePlugin {
         register("detekt") {
             id = "githubstarviewer.detekt"
             implementationClass = "DetektPlugin"
+        }
+
+        register("unit-test") {
+            id = "githubstarviewer.unittest"
+            implementationClass = "UnitTestPlugin"
         }
     }
 }

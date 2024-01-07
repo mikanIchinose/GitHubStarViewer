@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.ksp)
     alias(libs.plugins.secret)
@@ -41,11 +41,11 @@ dependencies {
     implementation(libs.ktor.client.android)
     implementation(libs.okhttp3.logging.interceptor)
     implementation(libs.ktor.client.logging)
-//    implementation(libs.ktor.client.auth)
+    // implementation(libs.ktor.client.auth)
     // ktor serialization
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
 
     // test
-    testImplementation(libs.junit)
+    // testImplementation(libs.junit)
 }

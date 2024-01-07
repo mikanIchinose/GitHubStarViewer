@@ -2,7 +2,7 @@ import java.io.FileInputStream
 import java.util.Properties
 
 plugins {
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.android.application)
     alias(libs.plugins.kotlinAndroid)
     // firebase
     alias(libs.plugins.googleServices)
@@ -98,5 +98,5 @@ dependencies {
     ksp(libs.hilt.compiler)
 
     // test
-    testImplementation(libs.junit)
+    // testImplementation(libs.junit)
 }

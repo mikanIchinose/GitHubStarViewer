@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinAndroid)
 
     alias(libs.plugins.githubStarViewer.detekt)
@@ -23,5 +23,5 @@ android {
 }
 
 dependencies {
-    testImplementation(libs.junit)
+    // testImplementation(libs.junit)
 }
