@@ -44,7 +44,7 @@ jobs:
       - name: run detekt
         run: ./gradlew detekt --continue
 
-      - name: Run report with ReviewDog
+      - name: report with ReviewDog
         if: ${{ failure() }}
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
