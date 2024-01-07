@@ -10,7 +10,6 @@ on:
 
 jobs:
   lint:
-    environment: build
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
