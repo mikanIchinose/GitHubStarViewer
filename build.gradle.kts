@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.secret) apply false
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.kotlinPowerAssert) apply false
     alias(libs.plugins.githook)
 }
 
@@ -29,6 +30,7 @@ githook {
                   exit ${'$'}EXIT_CODE
                 fi
                 rm ${'$'}OUTPUT
+                killall -9 java
             """.trimIndent()
         }
     }

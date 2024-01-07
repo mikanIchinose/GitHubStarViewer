@@ -25,6 +25,7 @@ collectionsImmutable = "0.3.4"
 secret = "2.0.1"
 detekt = "1.23.3"
 githook = "1.2.1"
+kotlinPowerAssert = "0.13.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -90,5 +91,6 @@ kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versio
 secret = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secret" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 githook = { id = "com.star-zero.gradle.githook", version.ref = "githook" }
+kotlinPowerAssert = { id = "com.bnorm.power.kotlin-power-assert", version.ref = "kotlinPowerAssert" }
 
 githubStarViewer-detekt = { id = "githubstarviewer.detekt", version = "unspecified" }
