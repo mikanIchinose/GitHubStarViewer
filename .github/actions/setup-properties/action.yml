@@ -1,0 +1,17 @@
+name: Setup properties
+description: Set up properties file for build
+
+runs:
+  using: "composite"
+  steps:
+    - name: setup local.properties
+      shell: bash
+      env:
+        API_TOKEN: ${{ secrets.API_TOKEN }}
+      run: |
+        echo "API_TOKEN=$API_TOKEN" >> local.properties
+    - name: setup detekt.properties
+      shell: bash
+      run: |
+        # disable autoCorrect
+        echo "autoCorrect=false" >> config/detekt/detekt.properties
