@@ -1,4 +1,5 @@
 name: Lint
+run-name: Lint
 
 on:
   pull_request:
@@ -6,11 +7,14 @@ on:
       - "README.md"
       - "docs/**"
       - ".github/**"
+
 jobs:
   lint:
+    environment: build
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
+
     steps:
       - uses: actions/checkout@v4
       - uses: reviewdog/action-setup@v1.0.6
@@ -21,20 +25,17 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-
       # TODO: 共通化させる
       - name: setup gradle
         uses: gradle/gradle-build-action@v2
         with:
           gradle-version: wrapper
-
       # TODO: 共通化させる
       - name: setup local.properties
         env:
           API_TOKEN: ${{ secrets.API_TOKEN }}
         run: |
           echo "API_TOKEN=$API_TOKEN" >> local.properties
-
       - name: setup detekt.properties
         run: |
           # disable autoCorrect
