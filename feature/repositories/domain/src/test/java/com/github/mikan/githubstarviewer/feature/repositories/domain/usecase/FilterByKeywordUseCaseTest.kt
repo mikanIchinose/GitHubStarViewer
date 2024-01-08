@@ -11,7 +11,7 @@ class FilterByKeywordUseCaseTest {
     @Test
     fun filter_by_keyword() {
         Given {
-            val sut = FilterByKeywordUseCase()
+            val sut = FilterByKeywordsUseCase()
             val repositories = listOf(
                 // matched name
                 createRepositoryDomainModel(
@@ -30,7 +30,10 @@ class FilterByKeywordUseCaseTest {
                 ),
             )
             When {
-                val result = sut("mikan", repositories)
+                val result = sut(
+                    include = "mikan",
+                    repositories = repositories
+                )
                 Then {
                     assertEquals(
                         listOf(repositories[0], repositories[1]),
@@ -45,7 +48,7 @@ class FilterByKeywordUseCaseTest {
     @Test
     fun filter_not_by_keyword() {
         Given {
-            val sut = FilterNotByKeywordUseCase()
+            val sut = FilterByKeywordsUseCase()
             val repositories = listOf(
                 // unmatched name
                 createRepositoryDomainModel(
@@ -64,7 +67,10 @@ class FilterByKeywordUseCaseTest {
                 ),
             )
             When {
-                val result = sut("mikan", repositories)
+                val result = sut(
+                    exclude = "mikan",
+                    repositories = repositories
+                )
                 Then {
                     assertEquals(
                         listOf(repositories[2]),
@@ -79,8 +85,7 @@ class FilterByKeywordUseCaseTest {
     @Test
     fun filter_and_filter_not_by_keyword() {
         Given {
-            val filterNot = FilterNotByKeywordUseCase()
-            val filter = FilterByKeywordUseCase()
+            val sut = FilterByKeywordsUseCase()
             val repositories = listOf(
                 createRepositoryDomainModel(
                     nameWithOwner = "mikan/ddu-source-around",
@@ -96,12 +101,11 @@ class FilterByKeywordUseCaseTest {
                 ),
             )
             When {
-                val result = repositories
-                    .let {
-                        filter("mikan", it)
-                    }.let {
-                        filterNot("Shougo", it)
-                    }
+                val result = sut(
+                    include = "mikan",
+                    exclude = "Shougo",
+                    repositories = repositories
+                )
                 Then {
                     assertEquals(
                         listOf(repositories[0]),
