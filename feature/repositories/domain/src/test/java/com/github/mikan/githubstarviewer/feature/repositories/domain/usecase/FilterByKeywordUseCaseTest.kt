@@ -76,6 +76,43 @@ class FilterByKeywordUseCaseTest {
         }
     }
 
+    @Test
+    fun filter_and_filter_not_by_keyword() {
+        Given {
+            val filterNot = FilterNotByKeywordUseCase()
+            val filter = FilterByKeywordUseCase()
+            val repositories = listOf(
+                createRepositoryDomainModel(
+                    nameWithOwner = "mikan/ddu-source-around",
+                    description = "description",
+                ),
+                createRepositoryDomainModel(
+                    nameWithOwner = "Shougo/ddu-source-file",
+                    description = "mikan",
+                ),
+                createRepositoryDomainModel(
+                    nameWithOwner = "Shougo/ddu-source-file",
+                    description = "ddu source for file",
+                ),
+            )
+            When {
+                val result = repositories
+                    .let {
+                        filter("mikan", it)
+                    }.let {
+                        filterNot("Shougo", it)
+                    }
+                Then {
+                    assertEquals(
+                        listOf(repositories[0]),
+                        result,
+                        "キーワードを含むリポジトリが抜けています"
+                    )
+                }
+            }
+        }
+    }
+
     private fun createRepositoryDomainModel(
         nameWithOwner: String,
         description: String,

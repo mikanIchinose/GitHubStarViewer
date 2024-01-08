@@ -8,8 +8,6 @@ class FilterByKeywordUseCase @Inject constructor() {
         keyword: String,
         repositories: List<RepositoryDomainModel>,
     ): List<RepositoryDomainModel> {
-        return repositories.filter {
-            it.nameWithOwner.contains(keyword) || it.description?.contains(keyword) == true
-        }
+        return repositories.filterByKeyword(keyword)
     }
 }

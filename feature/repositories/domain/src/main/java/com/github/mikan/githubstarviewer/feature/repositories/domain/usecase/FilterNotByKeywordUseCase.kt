@@ -8,8 +8,6 @@ class FilterNotByKeywordUseCase @Inject constructor() {
         keyword: String,
         repositories: List<RepositoryDomainModel>,
     ): List<RepositoryDomainModel> {
-        return repositories.filterNot {
-            it.nameWithOwner.contains(keyword) || it.description?.contains(keyword) == true
-        }
+        return repositories.filterNotByKeyword(keyword)
     }
 }
