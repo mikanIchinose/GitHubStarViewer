@@ -5,9 +5,12 @@ import javax.inject.Inject
 
 class FilterByKeywordUseCase @Inject constructor() {
     operator fun invoke(
-        keyword: String,
+        include: String = "",
+        exclude: String = "",
         repositories: List<RepositoryDomainModel>,
     ): List<RepositoryDomainModel> {
-        return repositories.filterByKeyword(keyword)
+        return repositories
+            .filterByKeyword(include)
+            .filterNotByKeyword(exclude)
     }
 }

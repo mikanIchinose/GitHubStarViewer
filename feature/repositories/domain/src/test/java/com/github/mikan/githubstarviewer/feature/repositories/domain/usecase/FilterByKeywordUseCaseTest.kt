@@ -11,7 +11,7 @@ class FilterByKeywordUseCaseTest {
     @Test
     fun filter_by_keyword() {
         Given {
-            val sut = FilterByKeywordsUseCase()
+            val sut = FilterByKeywordUseCase()
             val repositories = listOf(
                 // matched name
                 createRepositoryDomainModel(
@@ -48,7 +48,7 @@ class FilterByKeywordUseCaseTest {
     @Test
     fun filter_not_by_keyword() {
         Given {
-            val sut = FilterByKeywordsUseCase()
+            val sut = FilterByKeywordUseCase()
             val repositories = listOf(
                 // unmatched name
                 createRepositoryDomainModel(
@@ -85,7 +85,7 @@ class FilterByKeywordUseCaseTest {
     @Test
     fun filter_and_filter_not_by_keyword() {
         Given {
-            val sut = FilterByKeywordsUseCase()
+            val sut = FilterByKeywordUseCase()
             val repositories = listOf(
                 createRepositoryDomainModel(
                     nameWithOwner = "mikan/ddu-source-around",
