@@ -3,6 +3,7 @@ package com.github.mikan.githubstarviewer.feature.repositories.domain.usecase
 import com.github.mikan.githubstarviewer.core.testing.bdd.Given
 import com.github.mikan.githubstarviewer.core.testing.bdd.Then
 import com.github.mikan.githubstarviewer.core.testing.bdd.When
+import com.github.mikan.githubstarviewer.core.testing.domain.model.sampleRepositoryDomainModels
 import com.github.mikan.githubstarviewer.feature.repositories.domain.model.RepositoryDomainModel
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -111,6 +112,24 @@ class FilterByKeywordUseCaseTest {
                         listOf(repositories[0]),
                         result,
                         "キーワードを含むリポジトリが抜けています"
+                    )
+                }
+            }
+        }
+    }
+
+    @Test
+    fun filter_by_blank() {
+        Given {
+            val sut = FilterByKeywordUseCase()
+            When {
+                val result = sut(
+                    repositories = sampleRepositoryDomainModels
+                )
+                Then {
+                    assertEquals(
+                        sampleRepositoryDomainModels,
+                        result
                     )
                 }
             }
