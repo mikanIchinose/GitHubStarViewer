@@ -5,12 +5,15 @@ import com.github.mikan.githubstarviewer.core.testing.bdd.Then
 import com.github.mikan.githubstarviewer.core.testing.bdd.When
 import com.github.mikan.githubstarviewer.core.testing.domain.model.sampleRepositoryDomainModels
 import com.github.mikan.githubstarviewer.feature.repositories.domain.model.RepositoryDomainModel
+import org.junit.jupiter.api.DisplayName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
+@DisplayName("キーワードによるフィルター")
 class FilterByKeywordUseCaseTest {
     @Test
-    fun filter_by_keyword() {
+    @DisplayName("キーワードを持つものが絞り込まれること")
+    fun `Repositories containing the given keyword are filtered`() {
         Given {
             val sut = FilterByKeywordUseCase()
             val repositories = listOf(
@@ -47,7 +50,8 @@ class FilterByKeywordUseCaseTest {
     }
 
     @Test
-    fun filter_not_by_keyword() {
+    @DisplayName("キーワードを持たないものが絞り込まれること")
+    fun `Repositories containing the given keyword are not filtered`() {
         Given {
             val sut = FilterByKeywordUseCase()
             val repositories = listOf(
@@ -84,7 +88,8 @@ class FilterByKeywordUseCaseTest {
     }
 
     @Test
-    fun filter_and_filter_not_by_keyword() {
+    @DisplayName("包含キーワードを持ち、除外キーワードを持たないものが絞り込まれること")
+    fun `Repositories included a keyword and excluding another are filtered`() {
         Given {
             val sut = FilterByKeywordUseCase()
             val repositories = listOf(
@@ -119,7 +124,8 @@ class FilterByKeywordUseCaseTest {
     }
 
     @Test
-    fun filter_by_blank() {
+    @DisplayName("空文字で絞り込む = 変化なし")
+    fun `Repositories are not filtered by a blank keyword`() {
         Given {
             val sut = FilterByKeywordUseCase()
             When {
