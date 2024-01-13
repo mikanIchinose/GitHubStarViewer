@@ -32,8 +32,8 @@ class FilterByKeywordUseCaseTest {
             )
             When {
                 val result = sut(
+                    repositories = repositories,
                     include = "mikan",
-                    repositories = repositories
                 )
                 Then {
                     assertEquals(
@@ -69,8 +69,8 @@ class FilterByKeywordUseCaseTest {
             )
             When {
                 val result = sut(
+                    repositories = repositories,
                     exclude = "mikan",
-                    repositories = repositories
                 )
                 Then {
                     assertEquals(
@@ -103,9 +103,9 @@ class FilterByKeywordUseCaseTest {
             )
             When {
                 val result = sut(
+                    repositories = repositories,
                     include = "mikan",
                     exclude = "Shougo",
-                    repositories = repositories
                 )
                 Then {
                     assertEquals(

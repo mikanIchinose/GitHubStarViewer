@@ -5,9 +5,9 @@ import javax.inject.Inject
 
 class FilterByKeywordUseCase @Inject constructor() {
     operator fun invoke(
+        repositories: List<RepositoryDomainModel>,
         include: String = "",
         exclude: String = "",
-        repositories: List<RepositoryDomainModel>,
     ): List<RepositoryDomainModel> {
         return repositories
             .filterByKeyword(include)
