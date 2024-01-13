@@ -5,10 +5,18 @@ import javax.inject.Inject
 
 class FilterByKeywordUseCase @Inject constructor() {
     operator fun invoke(
+        repositories: List<RepositoryDomainModel>,
         include: String = "",
         exclude: String = "",
-        repositories: List<RepositoryDomainModel>,
     ): List<RepositoryDomainModel> {
+        if (include.isBlank() && exclude.isBlank()) {
+            return repositories
+        }
+
+        require(include != exclude) {
+            "include and exclude must be different."
+        }
+
         return repositories
             .filterByKeyword(include)
             .filterNotByKeyword(exclude)
