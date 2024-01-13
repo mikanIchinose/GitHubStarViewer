@@ -6,6 +6,7 @@ import com.github.mikan.githubstarviewer.core.testing.bdd.When
 import com.github.mikan.githubstarviewer.core.testing.domain.model.sampleRepositoryDomainModels
 import com.github.mikan.githubstarviewer.feature.repositories.domain.model.RepositoryDomainModel
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.assertThrows
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -139,6 +140,21 @@ class FilterByKeywordUseCaseTest {
                     )
                 }
             }
+        }
+    }
+
+    @Test
+    @DisplayName("包含キーワードと除外キーワードは一致してはいけない")
+    fun `included-keyword and excluded-keyword must not same`() {
+        // Arrange
+        val sut = FilterByKeywordUseCase()
+        // Assert
+        assertThrows<IllegalArgumentException> {
+            sut(
+                repositories = sampleRepositoryDomainModels,
+                include = "mikan",
+                exclude = "mikan",
+            )
         }
     }
 

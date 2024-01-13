@@ -13,6 +13,10 @@ class FilterByKeywordUseCase @Inject constructor() {
             return repositories
         }
 
+        require(include != exclude) {
+            "include and exclude must be different."
+        }
+
         return repositories
             .filterByKeyword(include)
             .filterNotByKeyword(exclude)
