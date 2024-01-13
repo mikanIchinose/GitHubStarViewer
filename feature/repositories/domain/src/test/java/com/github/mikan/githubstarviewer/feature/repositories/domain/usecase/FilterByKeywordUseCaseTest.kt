@@ -1,8 +1,5 @@
 package com.github.mikan.githubstarviewer.feature.repositories.domain.usecase
 
-import com.github.mikan.githubstarviewer.core.testing.bdd.Given
-import com.github.mikan.githubstarviewer.core.testing.bdd.Then
-import com.github.mikan.githubstarviewer.core.testing.bdd.When
 import com.github.mikan.githubstarviewer.core.testing.domain.model.sampleRepositoryDomainModels
 import com.github.mikan.githubstarviewer.feature.repositories.domain.model.RepositoryDomainModel
 import org.junit.jupiter.api.DisplayName
@@ -24,128 +21,115 @@ class FilterByKeywordUseCaseTest {
     @Test
     @DisplayName("キーワードを持つものが絞り込まれること")
     fun `Repositories containing the given keyword are filtered`() {
-        Given {
-            val repositories = listOf(
-                // matched name
-                createRepositoryDomainModel(
-                    nameWithOwner = "mikan/ddu-source-around",
-                    description = "description",
-                ),
-                // matched description
-                createRepositoryDomainModel(
-                    nameWithOwner = "Shougo/ddu-source-file",
-                    description = "mikan",
-                ),
-                // unmatched
-                createRepositoryDomainModel(
-                    nameWithOwner = "Shougo/ddu-source-file",
-                    description = "ddu source for file",
-                ),
-            )
-            When {
-                val result = sut(
-                    repositories = repositories,
-                    include = "mikan",
-                )
-                Then {
-                    assertEquals(
-                        listOf(repositories[0], repositories[1]),
-                        result,
-                        "キーワードを含むリポジトリが抜けています"
-                    )
-                }
-            }
-        }
+        // Arrange
+        val repositories = listOf(
+            // matched name
+            createRepositoryDomainModel(
+                nameWithOwner = "mikan/ddu-source-around",
+                description = "description",
+            ),
+            // matched description
+            createRepositoryDomainModel(
+                nameWithOwner = "Shougo/ddu-source-file",
+                description = "mikan",
+            ),
+            // unmatched
+            createRepositoryDomainModel(
+                nameWithOwner = "Shougo/ddu-source-file",
+                description = "ddu source for file",
+            ),
+        )
+        // Act
+        val result = sut(
+            repositories = repositories,
+            include = "mikan",
+        )
+        // Assert
+        assertEquals(
+            listOf(repositories[0], repositories[1]),
+            result,
+            "キーワードを含むリポジトリが抜けています"
+        )
     }
 
     @Test
     @DisplayName("キーワードを持たないものが絞り込まれること")
     fun `Repositories containing the given keyword are not filtered`() {
-        Given {
-            val repositories = listOf(
-                // unmatched name
-                createRepositoryDomainModel(
-                    nameWithOwner = "mikan/ddu-source-around",
-                    description = "description",
-                ),
-                // unmatched description
-                createRepositoryDomainModel(
-                    nameWithOwner = "Shougo/ddu-source-file",
-                    description = "mikan",
-                ),
-                // matched
-                createRepositoryDomainModel(
-                    nameWithOwner = "Shougo/ddu-source-file",
-                    description = "ddu source for file",
-                ),
-            )
-            When {
-                val result = sut(
-                    repositories = repositories,
-                    exclude = "mikan",
-                )
-                Then {
-                    assertEquals(
-                        listOf(repositories[2]),
-                        result,
-                        "キーワードを含んだリポジトリが含まれています"
-                    )
-                }
-            }
-        }
+        // Arrange
+        val repositories = listOf(
+            // unmatched name
+            createRepositoryDomainModel(
+                nameWithOwner = "mikan/ddu-source-around",
+                description = "description",
+            ),
+            // unmatched description
+            createRepositoryDomainModel(
+                nameWithOwner = "Shougo/ddu-source-file",
+                description = "mikan",
+            ),
+            // matched
+            createRepositoryDomainModel(
+                nameWithOwner = "Shougo/ddu-source-file",
+                description = "ddu source for file",
+            ),
+        )
+        // Act
+        val result = sut(
+            repositories = repositories,
+            exclude = "mikan",
+        )
+        // Assert
+        assertEquals(
+            listOf(repositories[2]),
+            result,
+            "キーワードを含んだリポジトリが含まれています"
+        )
     }
 
     @Test
     @DisplayName("包含キーワードを持ち、除外キーワードを持たないものが絞り込まれること")
     fun `Repositories included a keyword and excluding another are filtered`() {
-        Given {
-            val repositories = listOf(
-                createRepositoryDomainModel(
-                    nameWithOwner = "mikan/ddu-source-around",
-                    description = "description",
-                ),
-                createRepositoryDomainModel(
-                    nameWithOwner = "Shougo/ddu-source-file",
-                    description = "mikan",
-                ),
-                createRepositoryDomainModel(
-                    nameWithOwner = "Shougo/ddu-source-file",
-                    description = "ddu source for file",
-                ),
-            )
-            When {
-                val result = sut(
-                    repositories = repositories,
-                    include = "mikan",
-                    exclude = "Shougo",
-                )
-                Then {
-                    assertEquals(
-                        listOf(repositories[0]),
-                        result,
-                        "キーワードを含むリポジトリが抜けています"
-                    )
-                }
-            }
-        }
+        // Arrange
+        val repositories = listOf(
+            createRepositoryDomainModel(
+                nameWithOwner = "mikan/ddu-source-around",
+                description = "description",
+            ),
+            createRepositoryDomainModel(
+                nameWithOwner = "Shougo/ddu-source-file",
+                description = "mikan",
+            ),
+            createRepositoryDomainModel(
+                nameWithOwner = "Shougo/ddu-source-file",
+                description = "ddu source for file",
+            ),
+        )
+        // Act
+        val result = sut(
+            repositories = repositories,
+            include = "mikan",
+            exclude = "Shougo",
+        )
+        // Assert
+        assertEquals(
+            listOf(repositories[0]),
+            result,
+            "キーワードを含むリポジトリが抜けています"
+        )
     }
 
     @Test
     @DisplayName("空文字で絞り込む = 変化なし")
     fun `Repositories are not filtered by a blank keyword`() {
-        Given {
-            When {
-                val result = sut(
-                    repositories = sampleRepositoryDomainModels
-                )
-                Then {
-                    assertEquals(
-                        sampleRepositoryDomainModels,
-                        result
-                    )
-                }
-            }
-        }
+        // Arrange
+        val result = sut(
+            repositories = sampleRepositoryDomainModels
+        )
+        // Assert
+        assertEquals(
+            sampleRepositoryDomainModels,
+            result
+        )
     }
 
     @Test
