@@ -9,6 +9,10 @@ class FilterByKeywordUseCase @Inject constructor() {
         include: String = "",
         exclude: String = "",
     ): List<RepositoryDomainModel> {
+        if (include.isBlank() && exclude.isBlank()) {
+            return repositories
+        }
+
         return repositories
             .filterByKeyword(include)
             .filterNotByKeyword(exclude)
