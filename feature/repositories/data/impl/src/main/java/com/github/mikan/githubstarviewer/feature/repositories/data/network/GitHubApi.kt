@@ -12,8 +12,19 @@ import javax.inject.Inject
 internal class GitHubApi @Inject constructor(
     private val client: HttpClient,
 ) {
-    fun getStarredRepositories(userName: String): Flow<List<StarredRepository>> = flow {
-        val response = client.get("users/$userName/starred")
+    fun getStarredRepositories(
+        userName: String,
+        page: Int,
+        perPage: Int = 100,
+    ): Flow<List<StarredRepository>> = flow {
+        val response = client.get("users/$userName/starred") {
+            url {
+                parameters.apply {
+                    append("page", "$page")
+                    append("per_page", "$perPage")
+                }
+            }
+        }
         emit(response.body<List<StarredRepository>>())
     }
 
