@@ -37,4 +37,8 @@ dependencies {
 
     implementation(libs.ktor.client.core)
     implementation(libs.kotlinx.serialization.json)
+
+    // paging
+    implementation(libs.androidx.paging.runtime)
+    testImplementation(libs.androidx.paging.common)
 }
