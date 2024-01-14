@@ -23,6 +23,7 @@ secret = "2.0.1"
 detekt = "1.23.5"
 githook = "1.2.1"
 kotlinPowerAssert = "0.13.0"
+paging = "3.2.1"
 
 [libraries]
 # Gradle Convention Plugin の DSL で使う
@@ -33,6 +34,11 @@ android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", ve
 
 # androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 # androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+
+# Paging
+androidx-paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
+androidx-paging-common = { group = "androidx.paging", name = "paging-common", version.ref = "paging" }
+androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging" }
 
 # Compose
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
