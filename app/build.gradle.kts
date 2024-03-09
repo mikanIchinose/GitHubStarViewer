@@ -96,7 +96,4 @@ dependencies {
     // dependency injection
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-
-    // test
-    // testImplementation(libs.junit)
 }

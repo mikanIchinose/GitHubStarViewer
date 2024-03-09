@@ -45,7 +45,4 @@ dependencies {
     // ktor serialization
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
-
-    // test
-    // testImplementation(libs.junit)
 }
