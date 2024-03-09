@@ -31,5 +31,4 @@ dependencies {
     implementation(libs.google.firebase.auth)
 
     implementation(projects.feature.signin.data.api)
-    // testImplementation(libs.junit)
 }
