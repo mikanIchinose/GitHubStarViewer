@@ -1,0 +1,23 @@
+name: Check Buildable
+run-name: Check Buildable
+
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+
+jobs:
+  build-debug:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: .github/actions/setup-java
+      - uses: ./.github/actions/setup-properties
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: ./.github/actions/setup-secrets
+        with:
+          google-services-json: ${{ secrets.GOOGLE_SERVICES_JSON }}
+
+      - run: ./gradlew buildDebug
+
