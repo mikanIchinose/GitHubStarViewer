@@ -13,6 +13,7 @@ import org.junit.jupiter.api.DisplayName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
+// TODO: 削除予定
 class GetStarredRepositoriesUseCaseTest {
     @Test
     @DisplayName(

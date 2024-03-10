@@ -5,6 +5,7 @@ import com.github.mikan.githubstarviewer.feature.repositories.domain.model.toDom
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
+@Deprecated("Use GetStarredRepositoryPagingDataUseCase")
 class GetStarredRepositoriesUseCase @Inject constructor(
     private val repository: GitHubRepository,
 ) {
