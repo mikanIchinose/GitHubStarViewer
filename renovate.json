@@ -12,6 +12,13 @@
 			],
 			"groupName": "Compose Compiler and Kotlin",
 			"groupSlug": "compose_compiler_and_kotlin"
+		},
+		{
+			"matchPackagePrefixes": [
+				"githubstarviewer.detekt:githubstarviewer.detekt.gradle.plugin",
+				"githubstarviewer.unittest:githubstarviewer.unittest.gradle.plugin"
+			],
+			"enabled": false
 		}
 	]
 }
