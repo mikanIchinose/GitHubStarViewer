@@ -15,8 +15,7 @@
 		},
 		{
 			"matchPackagePrefixes": [
-				"githubstarviewer.detekt:githubstarviewer.detekt.gradle.plugin",
-				"githubstarviewer.unittest:githubstarviewer.unittest.gradle.plugin"
+				"githubstarviewer"
 			],
 			"enabled": false
 		}
