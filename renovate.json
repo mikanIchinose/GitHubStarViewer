@@ -12,6 +12,12 @@
 			],
 			"groupName": "Compose Compiler and Kotlin",
 			"groupSlug": "compose_compiler_and_kotlin"
+		},
+		{
+			"matchPackagePrefixes": [
+				"githubstarviewer"
+			],
+			"enabled": false
 		}
 	]
 }
