@@ -4,19 +4,17 @@ import com.github.mikan.githubstarviewer.feature.repositories.data.api.model.Sta
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.json.JsonObject
 import javax.inject.Inject
 
 internal class GitHubApi @Inject constructor(
     private val client: HttpClient,
 ) {
-    fun getStarredRepositories(
+    suspend fun getStarredRepositories(
         userName: String,
         page: Int,
-        perPage: Int = 100,
-    ): Flow<List<StarredRepository>> = flow {
+        perPage: Int,
+    ): List<StarredRepository> {
         val response = client.get("users/$userName/starred") {
             url {
                 parameters.apply {
@@ -25,12 +23,12 @@ internal class GitHubApi @Inject constructor(
                 }
             }
         }
-        emit(response.body<List<StarredRepository>>())
+        return response.body<List<StarredRepository>>()
     }
 
-    fun getLanguages(repository: StarredRepository): Flow<List<String>> = flow {
+    suspend fun getLanguages(repository: StarredRepository): List<String> {
         val response = client.get(repository.languagesUrl)
         val jsonObject = response.body<JsonObject>()
-        emit(jsonObject.keys.toList())
+        return jsonObject.keys.toList()
     }
 }

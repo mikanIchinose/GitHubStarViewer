@@ -1,6 +1,7 @@
 package com.github.mikan.githubstarviewer.feature.repositories.domain.usecase
 
 import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
 import androidx.paging.map
 import com.github.mikan.githubstarviewer.feature.repositories.data.api.GitHubRepository
@@ -14,8 +15,8 @@ class GetStarredRepositoryPagingDataUseCase @Inject constructor(
     private val pagingSource: PagingSource<Int, StarredRepository>,
 ) {
     operator fun invoke() = Pager(
-        config = androidx.paging.PagingConfig(
-            pageSize = 20,
+        config = PagingConfig(
+            pageSize = 10,
         ),
         pagingSourceFactory = { pagingSource },
     )
