@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -19,7 +20,6 @@ import androidx.compose.material.icons.filled.Sell
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,6 +33,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.paging.LoadState
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.github.mikan.githubstarviewer.feature.repositories.ui.model.RepositoryUiModel
 import com.github.mikan.githubstarviewer.feature.repositories.ui.model.RepositoryUiModelPreviewParameterProvider
 import com.github.mikan.githubstarviewer.feature.repositories.ui.theme.ProgrammingLanguageColor
@@ -41,40 +43,30 @@ import com.github.mikan.githubstarviewer.feature.repositories.ui.theme.Programmi
 fun RepositoriesScreen(
     viewModel: RepositoriesViewModel = viewModel(),
 ) {
-    // val items = viewModel.items.collectAsLazyPagingItems()
-    // RepositoriesScreen(
-    //     uiModels = items.itemSnapshotList.items,
-    //     isLoading = items.loadState.refresh is LoadState.Loading,
-    //     isAppendLoading = items.loadState.append is LoadState.Loading,
-    // )
-}
+    val items = viewModel.items.collectAsLazyPagingItems()
 
-// Pagingの世界から切り離された優しい世界
-@Composable
-private fun RepositoriesScreen(
-    uiModels: List<RepositoryUiModel>,
-    isLoading: Boolean,
-    isAppendLoading: Boolean,
-    modifier: Modifier = Modifier,
-) {
     Box(
-        modifier = modifier,
-        contentAlignment = Alignment.TopCenter,
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
-        if (isLoading) {
+        if (items.loadState.refresh == LoadState.Loading) {
             CircularProgressIndicator()
         }
         LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            items(count = uiModels.size) { index ->
-                val uiModel = uiModels[index]
-                RepositoryItem(
-                    uiModel = uiModel,
-                    onClick = { println(uiModel.url) },
-                )
+            items(count = items.itemCount) { index ->
+                val uiModel = items[index]
+                if (uiModel != null) {
+                    RepositoryItem(
+                        uiModel = uiModel,
+                        onClick = { println(uiModel.url) },
+                    )
+                }
             }
-            if (isAppendLoading) {
+            if (items.loadState.append == LoadState.Loading) {
                 item {
                     CircularProgressIndicator()
                 }
@@ -211,17 +203,4 @@ private fun PreviewRepositoryItem(
         uiModel = uiModel,
         onClick = {},
     )
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PreviewRepositoriesScreen() {
-    Scaffold {
-        RepositoriesScreen(
-            uiModels = RepositoryUiModelPreviewParameterProvider().values.toList(),
-            isLoading = false,
-            isAppendLoading = false,
-            modifier = Modifier.padding(it),
-        )
-    }
 }
