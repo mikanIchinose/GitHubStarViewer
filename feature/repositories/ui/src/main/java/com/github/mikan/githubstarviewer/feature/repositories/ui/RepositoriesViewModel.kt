@@ -1,29 +1,25 @@
 package com.github.mikan.githubstarviewer.feature.repositories.ui
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.mikan.githubstarviewer.feature.repositories.domain.model.RepositoryDomainModel
-import com.github.mikan.githubstarviewer.feature.repositories.domain.usecase.GetStarredRepositoriesUseCase
+import androidx.paging.cachedIn
+import androidx.paging.map
+import com.github.mikan.githubstarviewer.feature.repositories.domain.usecase.GetStarredRepositoryPagingDataUseCase
+import com.github.mikan.githubstarviewer.feature.repositories.ui.model.toUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @HiltViewModel
 class RepositoriesViewModel @Inject constructor(
-    private val getStarredRepositoriesUseCase: GetStarredRepositoriesUseCase
+    getStarredRepositoryPagingDataUseCase: GetStarredRepositoryPagingDataUseCase,
 ) : ViewModel() {
-    var repositories: List<RepositoryDomainModel>? by mutableStateOf(null)
-        private set
-
-    fun load() {
-        viewModelScope.launch {
-            getStarredRepositoriesUseCase()
-                .collect {
-                    repositories = it
+    internal val items =
+        getStarredRepositoryPagingDataUseCase()
+            .map {
+                it.map { domainModel ->
+                    domainModel.toUiModel()
                 }
-        }
-    }
+            }
+            .cachedIn(viewModelScope)
 }
