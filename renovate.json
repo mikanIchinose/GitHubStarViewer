@@ -6,12 +6,22 @@
 	"labels": ["deps"],
 	"packageRules": [
 		{
-			"matchPackagePrefixes": [
-				"androidx.compose.compiler",
-				"org.jetbrains.kotlin:"
+			"matchPackagePatterns": [
+				"org.jetbrains.kotlin.*"
 			],
-			"groupName": "Compose Compiler and Kotlin",
-			"groupSlug": "compose_compiler_and_kotlin"
+			"groupName": "kotlin",
+		},
+		{
+			"matchPackagePatterns": [
+				"androidx.compose.compiler:compiler",
+			],
+			"groupName": "kotlin",
+		},
+		{
+			"matchPackagePatterns": [
+				"com.google.devtools.ksp"
+			],
+			"groupName": "kotlin",
 		},
 		{
 			"matchPackagePrefixes": [
