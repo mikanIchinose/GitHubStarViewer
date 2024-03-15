@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: reviewdog/action-setup@v1.2.1
+      - uses: reviewdog/action-setup@v1
 
       - uses: ./.github/actions/setup-java
       - uses: ./.github/actions/setup-properties
