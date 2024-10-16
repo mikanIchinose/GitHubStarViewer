@@ -5,6 +5,10 @@
 	],
 	"labels": ["deps"],
 	"packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
 		{
 			"matchPackagePatterns": [
 				"org.jetbrains.kotlin.*"
