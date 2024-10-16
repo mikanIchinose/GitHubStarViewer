@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.kotlinPowerAssert) apply false
     alias(libs.plugins.githook)
+    alias(libs.plugins.compose.compiler) apply false
 }
 
 githook {
