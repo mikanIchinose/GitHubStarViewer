@@ -14,7 +14,7 @@ plugins {
 
 githook {
     hooks {
-        create("pre-commit") {
+        create("pre-push") {
             shell = """
                 killall -9 java
                 echo "Running detekt check..."
