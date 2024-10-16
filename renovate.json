@@ -5,6 +5,7 @@
 	],
 	"labels": ["deps"],
   "rebaseWhen": "behind-base-branch",
+  "prConcurrentLimit": 0,
 	"packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
