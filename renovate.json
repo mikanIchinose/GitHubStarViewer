@@ -1,39 +1,39 @@
 {
-	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": [
-		"config:recommended"
-	],
-	"labels": ["deps"],
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+  	"config:recommended"
+  ],
+  "labels": ["deps"],
   "rebaseWhen": "behind-base-branch",
   "prConcurrentLimit": 1,
-	"packageRules": [
+  "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
     },
-		{
-			"matchPackagePatterns": [
-				"org.jetbrains.kotlin.*"
-			],
-			"groupName": "kotlin",
-		},
-		{
-			"matchPackagePatterns": [
-				"androidx.compose.compiler:compiler",
-			],
-			"groupName": "kotlin",
-		},
-		{
-			"matchPackagePatterns": [
-				"com.google.devtools.ksp"
-			],
-			"groupName": "kotlin",
-		},
-		{
-			"matchPackagePrefixes": [
-				"githubstarviewer"
-			],
-			"enabled": false
+  	{
+  		"matchPackagePatterns": [
+  			"org.jetbrains.kotlin.*"
+  		],
+  		"groupName": "kotlin",
+  	},
+  	{
+  		"matchPackagePatterns": [
+  			"androidx.compose.compiler:compiler",
+  		],
+  		"groupName": "kotlin",
+  	},
+  	{
+  		"matchPackagePatterns": [
+  			"com.google.devtools.ksp"
+  		],
+  		"groupName": "kotlin",
+  	},
+  	{
+  		"matchPackagePrefixes": [
+  			"githubstarviewer"
+  		],
+  		"enabled": false
 		},
     {
       "matchPackagePrefixes": [
