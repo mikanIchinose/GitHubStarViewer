@@ -34,6 +34,13 @@
 				"githubstarviewer"
 			],
 			"enabled": false
-		}
+		},
+    {
+      "matchPackagePrefixes": [
+        "com.android.tools.build",
+        "gradle",
+      ],
+      "enabled": false
+    },
 	]
 }
