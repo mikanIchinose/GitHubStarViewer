@@ -4,6 +4,7 @@
 		"config:recommended"
 	],
 	"labels": ["deps"],
+  "rebaseWhen": "behind-base-branch",
 	"packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
