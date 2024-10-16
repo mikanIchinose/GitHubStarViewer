@@ -20,7 +20,7 @@ secret = "2.0.1"
 detekt = "1.23.6"
 githook = "1.2.1"
 kotlinPowerAssert = "0.13.0"
-paging = "3.3.0"
+paging = "3.3.2"
 
 [libraries]
 # Gradle Convention Plugin の DSL で使う
