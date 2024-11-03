@@ -24,8 +24,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.feature.signin.data.api)
-    runtimeOnly(projects.feature.signin.data.impl)
+    runtimeOnly(projects.feature.signin.data)
 
     implementation(libs.kotlinx.coroutines.android)
 

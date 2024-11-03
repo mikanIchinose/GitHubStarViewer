@@ -37,5 +37,5 @@ dependencies {
     implementation(libs.kotlinx.coroutines.test)
 
     implementation(projects.feature.repositories.domain)
-    implementation(projects.feature.signin.data.api)
+    implementation(projects.feature.signin.domain)
 }
