@@ -30,5 +30,5 @@ dependencies {
     implementation(platform(libs.google.firebase.bom))
     implementation(libs.google.firebase.auth)
 
-    implementation(projects.feature.signin.data.api)
+    implementation(projects.feature.signin.domain)
 }

@@ -1,4 +1,4 @@
-package com.github.mikan.githubstarviewer.feature.signin.data.api
+package com.github.mikan.githubstarviewer.feature.signin.domain.repository
 
 import android.app.Activity
 import kotlinx.coroutines.flow.Flow
