@@ -1,21 +1,10 @@
 package com.github.mikan.githubstarviewer.feature.repositories.domain.usecase
 
-import com.github.mikan.githubstarviewer.feature.repositories.data.api.GitHubRepository
-import com.github.mikan.githubstarviewer.feature.repositories.domain.model.toDomainModel
-import kotlinx.coroutines.flow.map
+import com.github.mikan.githubstarviewer.feature.repositories.domain.repository.GitHubRepositoryRepository
 import javax.inject.Inject
 
-@Deprecated("Use GetStarredRepositoryPagingDataUseCase")
 class GetStarredRepositoriesUseCase @Inject constructor(
-    private val repository: GitHubRepository,
+    private val gitHubRepositoryRepository: GitHubRepositoryRepository,
 ) {
-    suspend operator fun invoke() =
-        repository
-            .getStarredRepositories()
-            .map { repositories ->
-                repositories.map {
-                    val languages = repository.getLanguages(it.languagesUrl)
-                    it.toDomainModel(languages)
-                }
-            }
+    operator fun invoke() = gitHubRepositoryRepository.getStarredRepositories()
 }

@@ -36,7 +36,6 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.coroutines.test)
 
-    implementation(projects.feature.repositories.data.api)
     implementation(projects.feature.repositories.domain)
     implementation(projects.feature.signin.data.api)
 }

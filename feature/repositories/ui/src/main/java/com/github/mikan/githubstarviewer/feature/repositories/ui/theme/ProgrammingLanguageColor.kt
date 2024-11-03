@@ -16,7 +16,8 @@ enum class ProgrammingLanguageColor(val languageName: String, val color: Color) 
     Shell("Shell", Color(0xFF89E051)),
     Go("Go", Color(0xFF00ADD8)),
     Rust("Rust", Color(0xFFDEA584)),
-    Other("Other", Color.Gray), ;
+    Other("Other", Color.Gray),
+    ;
 
     companion object {
         fun fromLanguageName(languageName: String): ProgrammingLanguageColor {

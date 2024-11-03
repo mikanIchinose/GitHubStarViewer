@@ -49,8 +49,17 @@ fun RepositoriesScreen(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        if (items.loadState.refresh == LoadState.Loading) {
-            CircularProgressIndicator()
+        when (val state = items.loadState.refresh) {
+            is LoadState.Error -> {
+                ErrorScreen(
+                    message = state.error.localizedMessage ?: "Unknown error"
+                )
+            }
+            is LoadState.Loading -> {
+                CircularProgressIndicator()
+            }
+
+            is LoadState.NotLoading -> {}
         }
         LazyColumn(
             modifier = Modifier.fillMaxWidth(),
@@ -73,6 +82,17 @@ fun RepositoriesScreen(
             }
         }
     }
+}
+
+@Composable
+fun ErrorScreen(
+    message: String,
+    modifier: Modifier = Modifier
+) {
+    Text(
+        text = "Error: $message",
+        modifier = modifier.padding(16.dp)
+    )
 }
 
 @Composable

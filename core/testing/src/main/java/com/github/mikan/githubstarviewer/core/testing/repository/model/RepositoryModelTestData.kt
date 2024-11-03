@@ -1,9 +1,9 @@
 package com.github.mikan.githubstarviewer.core.testing.repository.model
 
-import com.github.mikan.githubstarviewer.feature.repositories.data.api.model.RepositoryModel
+import com.github.mikan.githubstarviewer.feature.repositories.data.model.RepositoryModel
 
 val sampleRepositoryModels = listOf(
-    RepositoryModel(
+    com.github.mikan.githubstarviewer.feature.repositories.data.model.RepositoryModel(
         fullName = "mikanIchinose/GitHubStarViewer",
         description = "GitHub Star Viewer",
         url = "",

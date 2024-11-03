@@ -2,37 +2,41 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlinSerialization)
 
     alias(libs.plugins.githubStarViewer.detekt)
-    alias(libs.plugins.githubStarViewer.unitTest)
 }
 
 android {
-    namespace = "com.github.mikan.githubstarviewer.feature.repositories.domain"
+    namespace = "com.github.mikan.githubstarviewer.feature.repositories.data.impl"
     compileSdk = 34
 
     defaultConfig {
         minSdk = 24
     }
 
+    val javaVersion = JavaVersion.VERSION_1_8
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = javaVersion.toString()
     }
 }
 
 dependencies {
-    runtimeOnly(projects.feature.repositories.data)
+    implementation(projects.feature.repositories.domain)
+    runtimeOnly(projects.core.network)
 
+    // dependency injection
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
     implementation(libs.kotlinx.coroutines.android)
 
-    testImplementation(projects.core.testing)
+    implementation(libs.ktor.client.core)
+    implementation(libs.kotlinx.serialization.json)
 
     // paging
     implementation(libs.androidx.paging.runtime)

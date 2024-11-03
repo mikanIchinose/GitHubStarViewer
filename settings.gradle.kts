@@ -20,19 +20,18 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "GitHub_Star_Viewer"
+rootProject.name = "GitHubStarViewer"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
+include(":core:data:api")
+include(":core:data:impl")
+include(":core:datastore")
+include(":core:network")
+include(":core:testing")
+include(":feature:repositories:data")
+include(":feature:repositories:ui")
+include(":feature:repositories:domain")
 include(":feature:signin:ui")
 include(":feature:signin:domain")
 include(":feature:signin:data:api")
 include(":feature:signin:data:impl")
-include(":core:data:api")
-include(":core:data:impl")
-include(":core:datastore")
-include(":feature:repositories:data:api")
-include(":feature:repositories:data:impl")
-include(":feature:repositories:ui")
-include(":feature:repositories:domain")
-include(":core:network")
-include(":core:testing")
