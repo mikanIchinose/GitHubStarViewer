@@ -3,38 +3,43 @@
   "extends": [
     "config:recommended"
   ],
-  "labels": ["deps"],
+  "labels": [
+    "deps"
+  ],
   "rebaseWhen": "behind-base-branch",
+  // 無駄なCI実行を抑制するために1件ずつRPを作る
   "prConcurrentLimit": 1,
   "packageRules": [
+    // メジャーアップデート以外は自動マージでヨシ
     {
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
       "automerge": true
     },
     {
-      "matchPackagePatterns": [
-        "org.jetbrains.kotlin.*"
+      "matchFileNames": [
+        ".github/**"
       ],
-      "groupName": "kotlin",
+      "groupName": "actions",
     },
     {
-      "matchPackagePatterns": [
-        "androidx.compose.compiler:compiler",
+      "matchFileNames": [
+        "gradle/libs.versions.toml"
       ],
-      "groupName": "kotlin",
+      "groupName": "dependencies",
     },
-    {
-      "matchPackagePatterns": [
-        "com.google.devtools.ksp"
-      ],
-      "groupName": "kotlin",
-    },
+    // Convention Plugin は無視
     {
       "matchPackagePrefixes": [
         "githubstarviewer"
       ],
       "enabled": false
     },
+    // AGPは手動でアップデートします
     {
       "matchPackagePrefixes": [
         "com.android.tools.build",
