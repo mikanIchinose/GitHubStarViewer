@@ -3,7 +3,7 @@ agp = "8.8.0"
 kotlin = "2.1.0"
 ksp = "2.1.0-1.0.29" # note: https://github.com/google/ksp/releases?q=&expanded=true
 composeCompiler = "1.5.13" # note: https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility
-hilt = "2.54"
+hilt = "2.55"
 hiltNavigationCompose = "1.2.0"
 navigation = "2.7.5"
 lifecycle = "2.8.7"
