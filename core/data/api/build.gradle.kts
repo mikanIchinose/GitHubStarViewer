@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.github.mikan.githubstarreview.data.api"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24

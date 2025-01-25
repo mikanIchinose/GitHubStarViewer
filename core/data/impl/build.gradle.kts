@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.github.mikan.githubstarreviewer.core.data.impl"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
