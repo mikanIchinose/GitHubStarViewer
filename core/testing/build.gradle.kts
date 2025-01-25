@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.github.mikan.githubstarviewer.core.testing"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24

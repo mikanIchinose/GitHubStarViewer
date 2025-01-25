@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.github.mikan.githubstarviewer.feature.signin.data.impl"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
